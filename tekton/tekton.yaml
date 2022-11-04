@@ -13,59 +13,19 @@ spec:
   #   type: storage
   workspaces:
     - name: source
-    - name: artifacts
   steps:
     - name: build
       image: centos:7
       script: |
         yum install -y rpmdevtools rpmlint
-        rpmdev-setuptree
-        cd ~/rpmbuild
+        cd rpmbuild
         mkdir test-0.0.1
-        cat <<EOF >> test-0.0.1/test.sh >
-        #!/bin/bash
-        echo "test output"
-        EOF
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
-        cat <<EOF > SPECS/test.spec
-        Name:           test
-        Version:        0.0.1
-        Release:        1%{?dist}
-        Summary:        test script
-        BuildArch:      noarch
-
-        License:        none
-        Source0:        %{name}-%{version}.tar.gz
-
-        Requires:       bash
-
-        %description
-        Test rpm script
-
-        %prep
-        %setup -q
-
-
-        %install
-        rm -rf \$RPM_BUILD_ROOT
-        mkdir -p \$RPM_BUILD_ROOT/%{_bindir}
-        cp %{name}.sh \$RPM_BUILD_ROOT/%{_bindir}
-
-        %clean
-        rm -rf \$RPM_BUILD_ROOT
-
-        %files
-        %{_bindir}/%{name}.sh
-
-        %changelog
-        * Thu Nov   3 2022 DJR
-        - 0.0.1
-        - Initial release
-        EOF
         rpmlint SPECS/test.spec
-        rpmbuild -bs ~/rpmbuild/SPECS/test.spec
-        rpmbuild -bb ~/rpmbuild/SPECS/test.spec
-        cp ~/rpmbuild/RPMS/noarch/*.rpm ~/rpmbuild/SRPMS/*.rpm $(workspaces.artifacts.path)
+        rpmbuild -bs SPECS/test.spec
+        rpmbuild -bb SPECS/test.spec
+        mkdir -p $(workspaces.source.path)/rpms
+        cp ~/rpmbuild/RPMS/noarch/*.rpm ~/rpmbuild/SRPMS/*.rpm $(workspaces.source.path)/rpms
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
@@ -83,9 +43,6 @@ spec:
       description: |
         This workspace contains the cloned repo files, so they can be read by the
         next task.
-    - name: artifact-data
-      description: |
-        This workspace contains the built RPMs.
   tasks:
     - name: fetch-source
       taskRef:
@@ -104,5 +61,3 @@ spec:
       workspaces:
         - name: source
           workspace: shared-data
-        - name: artifacts
-          workspace: artifact-data
