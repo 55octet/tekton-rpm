@@ -18,7 +18,7 @@ Test rpm script
 %install
 mkdir -p %{buildroot}/%{_bindir}
 ls -ltraR
-install -m 755 %{name}.sh %{buildroot}/%{_bindir}
+install -m 755 %{name}-%{version}/%{name}.sh %{buildroot}/%{_bindir}
 
 %clean
 rm -rf %{buildroot}
