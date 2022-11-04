@@ -17,6 +17,8 @@ spec:
     - name: build
       image: centos:7
       script: |
+        set -x on
+        set -v on
         yum install -y rpmdevtools rpmlint
         cd $(workspaces.source.path)/rpmbuild
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
