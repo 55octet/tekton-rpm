@@ -22,6 +22,7 @@ spec:
         yum install -y rpmdevtools rpmlint
         cd $(workspaces.source.path)/rpmbuild
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
+        ls -lrtaR
         rpmlint SPECS/test.spec
         rpmbuild -bs SPECS/test.spec
         rpmbuild -bb SPECS/test.spec
