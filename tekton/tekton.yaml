@@ -22,10 +22,9 @@ spec:
         yum install -y rpmdevtools rpmlint
         cd $(workspaces.source.path)/rpmbuild
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
-        ls -lrtaR
         rpmlint SPECS/test.spec
-        rpmbuild --buildroot=$(workspaces.source.path)/rpmbuild -bs SPECS/test.spec
-        rpmbuild --buildroot=$(workspaces.source.path)/rpmbuild -bb SPECS/test.spec
+        rpmbuild --buildroot $(workspaces.source.path)/rpmbuild -bs SPECS/test.spec
+        rpmbuild --buildroot $(workspaces.source.path)/rpmbuild -bb SPECS/test.spec
         mkdir -p $(workspaces.source.path)/rpms
         cp $(workspaces.source.path)/rpmbuild/RPMS/noarch/*.rpm $(workspaces.source.path)/rpmbuild/SRPMS/*.rpm $(workspaces.source.path)/rpms
 ---

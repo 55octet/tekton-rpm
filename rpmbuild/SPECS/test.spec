@@ -16,12 +16,12 @@ Test rpm script
 %setup -q
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-cp %{name}.sh $RPM_BUILD_ROOT/%{_bindir}
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/%{_bindir}
+cp %{name}.sh %{buildroot}/%{_bindir}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %{_bindir}/%{name}.sh
