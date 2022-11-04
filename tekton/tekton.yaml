@@ -18,8 +18,7 @@ spec:
       image: centos:7
       script: |
         yum install -y rpmdevtools rpmlint
-        cd rpmbuild
-        mkdir test-0.0.1
+        cd $(workspaces.source.path)/rpmbuild
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
         rpmlint SPECS/test.spec
         rpmbuild -bs SPECS/test.spec
