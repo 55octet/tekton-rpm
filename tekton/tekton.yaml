@@ -20,6 +20,7 @@ spec:
         set -x on
         set -v on
         dnf install -y rpmdevtools rpmlint
+        export HOME=$(workspaces.source.path)
         cd $(workspaces.source.path)/rpmbuild
         tar czvf SOURCES/test-0.0.1.tar.gz test-0.0.1/
         rpmlint SPECS/test.spec
