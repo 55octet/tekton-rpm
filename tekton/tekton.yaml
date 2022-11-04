@@ -27,7 +27,7 @@ spec:
         rpmbuild -bs SPECS/test.spec
         rpmbuild -bb SPECS/test.spec
         mkdir -p $(workspaces.source.path)/rpms
-        cp ~/rpmbuild/RPMS/noarch/*.rpm ~/rpmbuild/SRPMS/*.rpm $(workspaces.source.path)/rpms
+        cp $(workspaces.source.path)/rpmbuild/RPMS/noarch/*.rpm $(workspaces.source.path)/rpmbuild/SRPMS/*.rpm $(workspaces.source.path)/rpms
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
