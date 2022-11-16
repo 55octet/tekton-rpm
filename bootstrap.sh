@@ -15,5 +15,5 @@ if ! kubectl -n bootstrap get secret ${secret_name} 1> /dev/null 2>&1; then
 fi
 
 if ! kubectl -n bootstrap get gitrepo ${flux_name} 1> /dev/null 2>&1 | kubectl -n bootstrap get kustomization ${flux_name} 1> /dev/null 2>&1; then
-    kubctl create -f tekton/bootstrap.yaml
+    kubectl create -f tekton/bootstrap.yaml
 fi
