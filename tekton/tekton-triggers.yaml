@@ -34,8 +34,6 @@ metadata:
   name: bitbucket-cloud-listener
 spec:
   serviceAccountName: tekton-eventlistener
-  kubernetesResource:
-    serviceType: ClusterIP
   triggers:
     - name: bitbucket-server-triggers
       # Interceptors parse the webhook to scrape the data from the POST payload
