@@ -14,6 +14,6 @@ if ! kubectl -n bootstrap get secret ${secret_name} 1> /dev/null 2>&1; then
         --from-literal=known_hosts="$(ssh-keyscan github.com 2>&1)"
 fi
 
-if ! kubectl -n bootstrap get gitrepo ${flux_name} 1> /dev/null 2>&1 | kubectl -n bootstrap get kustomization ${flux_name} 1> /dev/null 2>&1; then
+if ! kubectl -n bootstrap get gitrepo ${flux_name} 1> /dev/null 2>&1 || kubectl -n bootstrap get kustomization ${flux_name} 1> /dev/null 2>&1; then
     kubectl create -f tekton/bootstrap.yaml
 fi

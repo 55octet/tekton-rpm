@@ -21,6 +21,6 @@ spec:
   targetNamespace: tekton
   sourceRef:
     kind: GitRepository
-    name: bootstrap
+    name: tekton
   path: "./tekton"
   prune: true
