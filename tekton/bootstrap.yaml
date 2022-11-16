@@ -1,0 +1,26 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: tekton
+  namespace: bootstrap
+spec:
+  interval: 1m
+  url: ssh://git@github.com/55octet/tekton-rpm.git
+  secretRef:
+    name: github-ssh
+  ref:
+    branch: main
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: tekton
+  namespace: bootstrap
+spec:
+  interval: 10m
+  targetNamespace: tekton
+  sourceRef:
+    kind: GitRepository
+    name: bootstrap
+  path: "./tekton"
+  prune: true
