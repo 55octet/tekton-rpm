@@ -86,3 +86,22 @@ spec:
                     params:
                       - name: repo-url
                         value: https://55octet@bitbucket.org/55octet/tekon-triggers.git
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bitbucket-listener
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: bitbucket-listener.cd7198284aee45039778.centralus.aksapp.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: el-bitbucket-cloud-listener
+                port:
+                  number: 8080
