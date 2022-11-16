@@ -1,2 +1,3 @@
 resources:
   - tekton.yaml
+  - tekton-triggers.yaml

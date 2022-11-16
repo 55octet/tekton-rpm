@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tekton-eventlistener
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tekton-eventlistener-binding
+subjects:
+  - kind: ServiceAccount
+    name: tekton-eventlistener
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-roles
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tekton-eventlistener-binding
+subjects:
+  - kind: ServiceAccount
+    name: tekton-triggers-example-sa
+    namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-clusterroles
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: bitbucket-cloud-listener
+spec:
+  serviceAccountName: tekton-eventlistener
+  triggers:
+    - name: bitbucket-server-triggers
+      # Interceptors parse the webhook to scrape the data from the POST payload
+      # There are ClusterInterceptors for GitLab, GitHub, and BitBucket
+      # There is a generic ClusterInterceptor (CEL) that can be used to parse custom webhooks
+      # https://tekton.dev/docs/triggers/clusterinterceptors/
+      interceptors:
+        - ref:
+            name: "bitbucket"
+          params:
+            # This is required for a private instance of bitbucket
+            # This example is using bitbucket cloud, so it does not support the secrets
+            # - name: secretRef
+            #   value:
+            #     secretName: bitbucket-server-secret
+            #     secretKey: secretToken
+            - name: eventTypes
+              value:
+                # BitBucket repo eventTypes are here:
+                # https://support.atlassian.com/bitbucket-cloud/docs/event-payloads/#Repository
+                - repo:push
+      # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
+      # https://tekton.dev/docs/triggers/triggerbindings/
+      bindings:
+        - ref: bitbucket-server-binding
+      template:
+        spec:
+          params:
+            - name: repo-url
+          resourceTemplates:
+            - apiVersion: tekton.dev/v1beta1
+              kind: PipelineRun
+              metadata:
+                generateName: build-rpm-
+              spec:
+                pipelineRef:
+                  name: create-rpm
+                podTemplate:
+                  securityContext:
+                    fsGroup: 65532
+                workspaces:
+                  - name: shared-data
+                    volumeClaimTemplate:
+                      spec:
+                        accessModes:
+                          - ReadWriteOnce
+                        resources:
+                          requests:
+                            storage: 1Gi
+                    params:
+                      - name: repo-url
+                        value: https://55octet@bitbucket.org/55octet/tekon-triggers.git
