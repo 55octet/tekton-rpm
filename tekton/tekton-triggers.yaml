@@ -79,7 +79,7 @@ spec:
       # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
       # https://tekton.dev/docs/triggers/triggerbindings/
       bindings:
-        ref: bitbucket-refs-changed
+        - ref: bitbucket-refs-changed
       template:
         spec:
           params:
