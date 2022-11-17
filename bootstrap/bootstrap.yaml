@@ -14,6 +14,20 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
+  name: bootstrap
+  namespace: bootstrap
+spec:
+  interval: 10m
+  targetNamespace: bootstrap
+  sourceRef:
+    kind: GitRepository
+    name: tekton
+  path: "./bootstrap"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
   name: tekton
   namespace: bootstrap
 spec:
