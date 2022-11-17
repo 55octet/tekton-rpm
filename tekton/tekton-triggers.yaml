@@ -21,7 +21,7 @@ metadata:
   name: tekton-eventlistener-binding
 subjects:
   - kind: ServiceAccount
-    name: tekton-triggers-example-sa
+    name: tekton-eventlistener
     namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
