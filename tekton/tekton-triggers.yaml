@@ -48,7 +48,7 @@ spec:
       value: $(body.actor.emailAddress)
       default: "NoOne@null.net"
     - name: repository
-    - value: $(body.repository)
+      value: $(body.repository)
 ---
 # This listens for the actual webhook
 apiVersion: triggers.tekton.dev/v1beta1
