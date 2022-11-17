@@ -115,6 +115,10 @@ metadata:
     kubernetes.io/ingress.class: addon-http-application-routing
     cert-manager.io/issuer: letsencrypt-tekton
 spec:
+  tls:
+    - hosts:
+        - bitbucket-listener.cd7198284aee45039778.centralus.aksapp.io
+      secretName: bitbucket-listener-tls-secret
   rules:
     - host: bitbucket-listener.cd7198284aee45039778.centralus.aksapp.io
       http:
