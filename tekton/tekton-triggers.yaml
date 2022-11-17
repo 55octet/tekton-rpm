@@ -31,7 +31,7 @@ roleRef:
   kind: ClusterRole
   name: tekton-triggers-eventlistener-clusterroles
 ---
-apiVersion: triggers.tekton.dev/v1alpha1
+apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerBinding
 metadata:
   name: bitbucket-refs-changed
@@ -51,7 +51,7 @@ spec:
     - value: $(body.repository)
 ---
 # This listens for the actual webhook
-apiVersion: triggers.tekton.dev/v1alpha1
+apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
   name: bitbucket-cloud-listener
