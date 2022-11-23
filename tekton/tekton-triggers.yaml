@@ -42,7 +42,7 @@ spec:
     - name: request-id
       value: $(header.X-Request-Id)
     - name: committer-name
-      value: $(body.actor.name)
+      value: $(body.actor.display_name)
     - name: committer-email
       value: $(body.actor.emailAddress)
     - name: repository
@@ -113,7 +113,7 @@ spec:
                       - name: request-id
                         value: $(header.X-Request-Id)
                       - name: committer-name
-                        value: $(body.actor.name)
+                        value: $(body.actor.display_name)
                         default: No name
                       - name: committer-email
                         value: $(body.actor.emailAddress)
