@@ -43,10 +43,8 @@ spec:
       value: $(header.X-Request-Id)
     - name: committer-name
       value: $(body.actor.name)
-      default: No name
     - name: committer-email
       value: $(body.actor.emailAddress)
-      default: "NoOne@null.net"
     - name: repository
       value: $(body.repository)
 ---
@@ -110,6 +108,18 @@ spec:
                     params:
                       - name: repo-url
                         value: https://55octet@bitbucket.org/55octet/tekon-triggers.git
+                      - name: event-key
+                        value: $(header.X-Event-Key)
+                      - name: request-id
+                        value: $(header.X-Request-Id)
+                      - name: committer-name
+                        value: $(body.actor.name)
+                        default: No name
+                      - name: committer-email
+                        value: $(body.actor.emailAddress)
+                        default: "NoOne@null.net"
+                      - name: repository
+                        value: $(body.repository)
 ---
 # This is mainly for publicly-trusted certificate creation
 apiVersion: cert-manager.io/v1
