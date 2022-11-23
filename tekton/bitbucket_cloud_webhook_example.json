@@ -1,0 +1,292 @@
+{
+    "push": {
+        "changes": [
+            {
+                "old": {
+                    "name": "main",
+                    "target": {
+                        "type": "commit",
+                        "hash": "bcd2b894656c82c7fa2a575ea53e27def7f0cd35",
+                        "date": "2022-11-23T15:53:47+00:00",
+                        "author": {
+                            "type": "author",
+                            "raw": "Doug Reynolds"
+                        },
+                        "message": "another testn",
+                        "summary": {
+                            "type": "rendered",
+                            "raw": "another testn",
+                            "markup": "markdown",
+                            "html": "<p>another test</p>"
+                        },
+                        "links": {
+                            "self": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                            },
+                            "html": {
+                                "href": "https://bitbucket.org/55octet/tekon-triggers/commits/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                            }
+                        },
+                        "parents": [
+                            {
+                                "type": "commit",
+                                "hash": "98f0dd5ac1cca3c2cb56ccfc399b9f9304dd6815",
+                                "links": {
+                                    "self": {
+                                        "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/98f0dd5ac1cca3c2cb56ccfc399b9f9304dd6815"
+                                    },
+                                    "html": {
+                                        "href": "https://bitbucket.org/55octet/tekon-triggers/commits/98f0dd5ac1cca3c2cb56ccfc399b9f9304dd6815"
+                                    }
+                                }
+                            }
+                        ],
+                        "rendered": {},
+                        "properties": {}
+                    },
+                    "links": {
+                        "self": {
+                            "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/refs/branches/main"
+                        },
+                        "commits": {
+                            "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commits/main"
+                        },
+                        "html": {
+                            "href": "https://bitbucket.org/55octet/tekon-triggers/branch/main"
+                        }
+                    },
+                    "type": "branch",
+                    "merge_strategies": [
+                        "merge_commit",
+                        "squash",
+                        "fast_forward"
+                    ],
+                    "default_merge_strategy": "merge_commit"
+                },
+                "new": {
+                    "name": "main",
+                    "target": {
+                        "type": "commit",
+                        "hash": "ceaadc05a78f58bd5a0ea92cca58695050a14db2",
+                        "date": "2022-11-23T16:06:37+00:00",
+                        "author": {
+                            "type": "author",
+                            "raw": "Doug Reynolds"
+                        },
+                        "message": "another testn",
+                        "summary": {
+                            "type": "rendered",
+                            "raw": "another testn",
+                            "markup": "markdown",
+                            "html": "<p>another test</p>"
+                        },
+                        "links": {
+                            "self": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            },
+                            "html": {
+                                "href": "https://bitbucket.org/55octet/tekon-triggers/commits/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            }
+                        },
+                        "parents": [
+                            {
+                                "type": "commit",
+                                "hash": "bcd2b894656c82c7fa2a575ea53e27def7f0cd35",
+                                "links": {
+                                    "self": {
+                                        "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                                    },
+                                    "html": {
+                                        "href": "https://bitbucket.org/55octet/tekon-triggers/commits/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                                    }
+                                }
+                            }
+                        ],
+                        "rendered": {},
+                        "properties": {}
+                    },
+                    "links": {
+                        "self": {
+                            "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/refs/branches/main"
+                        },
+                        "commits": {
+                            "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commits/main"
+                        },
+                        "html": {
+                            "href": "https://bitbucket.org/55octet/tekon-triggers/branch/main"
+                        }
+                    },
+                    "type": "branch",
+                    "merge_strategies": [
+                        "merge_commit",
+                        "squash",
+                        "fast_forward"
+                    ],
+                    "default_merge_strategy": "merge_commit"
+                },
+                "truncated": false,
+                "created": false,
+                "forced": false,
+                "closed": false,
+                "links": {
+                    "commits": {
+                        "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commits?include=ceaadc05a78f58bd5a0ea92cca58695050a14db2&exclude=bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                    },
+                    "diff": {
+                        "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/diff/ceaadc05a78f58bd5a0ea92cca58695050a14db2..bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                    },
+                    "html": {
+                        "href": "https://bitbucket.org/55octet/tekon-triggers/branches/compare/ceaadc05a78f58bd5a0ea92cca58695050a14db2..bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                    }
+                },
+                "commits": [
+                    {
+                        "type": "commit",
+                        "hash": "ceaadc05a78f58bd5a0ea92cca58695050a14db2",
+                        "date": "2022-11-23T16:06:37+00:00",
+                        "author": {
+                            "type": "author",
+                            "raw": "Doug Reynolds <djreynolds@sei.cmu.edu>"
+                        },
+                        "message": "another testn",
+                        "summary": {
+                            "type": "rendered",
+                            "raw": "another testn",
+                            "markup": "markdown",
+                            "html": "<p>another test</p>"
+                        },
+                        "links": {
+                            "self": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            },
+                            "html": {
+                                "href": "https://bitbucket.org/55octet/tekon-triggers/commits/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            },
+                            "diff": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/diff/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            },
+                            "approve": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/ceaadc05a78f58bd5a0ea92cca58695050a14db2/approve"
+                            },
+                            "comments": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/ceaadc05a78f58bd5a0ea92cca58695050a14db2/comments"
+                            },
+                            "statuses": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/ceaadc05a78f58bd5a0ea92cca58695050a14db2/statuses"
+                            },
+                            "patch": {
+                                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/patch/ceaadc05a78f58bd5a0ea92cca58695050a14db2"
+                            }
+                        },
+                        "parents": [
+                            {
+                                "type": "commit",
+                                "hash": "bcd2b894656c82c7fa2a575ea53e27def7f0cd35",
+                                "links": {
+                                    "self": {
+                                        "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers/commit/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                                    },
+                                    "html": {
+                                        "href": "https://bitbucket.org/55octet/tekon-triggers/commits/bcd2b894656c82c7fa2a575ea53e27def7f0cd35"
+                                    }
+                                }
+                            }
+                        ],
+                        "rendered": {},
+                        "properties": {}
+                    }
+                ]
+            }
+        ]
+    },
+    "repository": {
+        "type": "repository",
+        "full_name": "55octet/tekon-triggers",
+        "links": {
+            "self": {
+                "href": "https://api.bitbucket.org/2.0/repositories/55octet/tekon-triggers"
+            },
+            "html": {
+                "href": "https://bitbucket.org/55octet/tekon-triggers"
+            },
+            "avatar": {
+                "href": "https://bytebucket.org/ravatar/%7B9e48a963-17fd-44dc-a634-2529f92e6765%7D?ts=default"
+            }
+        },
+        "name": "Tekon Triggers",
+        "scm": "git",
+        "website": null,
+        "owner": {
+            "display_name": "Doug Reynolds",
+            "links": {
+                "self": {
+                    "href": "https://api.bitbucket.org/2.0/users/%7B7bbe66c8-7365-45f0-add9-7e7c829f2d58%7D"
+                },
+                "avatar": {
+                    "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:24ed60d2-b712-46cd-8be2-b1dd8e898c91/fc25e5f1-54f1-4b6b-aa67-ade4810c26e3/128"
+                },
+                "html": {
+                    "href": "https://bitbucket.org/%7B7bbe66c8-7365-45f0-add9-7e7c829f2d58%7D/"
+                }
+            },
+            "type": "user",
+            "uuid": "{7bbe66c8-7365-45f0-add9-7e7c829f2d58}",
+            "account_id": "557058:24ed60d2-b712-46cd-8be2-b1dd8e898c91",
+            "nickname": "55octet"
+        },
+        "workspace": {
+            "type": "workspace",
+            "uuid": "{7bbe66c8-7365-45f0-add9-7e7c829f2d58}",
+            "name": "workspace",
+            "slug": "55octet",
+            "links": {
+                "avatar": {
+                    "href": "https://bitbucket.org/workspaces/55octet/avatar/?ts=1668620774"
+                },
+                "html": {
+                    "href": "https://bitbucket.org/55octet/"
+                },
+                "self": {
+                    "href": "https://api.bitbucket.org/2.0/workspaces/55octet"
+                }
+            }
+        },
+        "is_private": true,
+        "project": {
+            "type": "project",
+            "key": "TEK",
+            "uuid": "{89092f65-bb82-424b-aee6-28c404cde388}",
+            "name": "tekton-triggers",
+            "links": {
+                "self": {
+                    "href": "https://api.bitbucket.org/2.0/workspaces/55octet/projects/TEK"
+                },
+                "html": {
+                    "href": "https://bitbucket.org/55octet/workspace/projects/TEK"
+                },
+                "avatar": {
+                    "href": "https://bitbucket.org/account/user/55octet/projects/TEK/avatar/32?ts=1668620841"
+                }
+            }
+        },
+        "uuid": "{9e48a963-17fd-44dc-a634-2529f92e6765}"
+    },
+    "actor": {
+        "display_name": "Doug Reynolds",
+        "links": {
+            "self": {
+                "href": "https://api.bitbucket.org/2.0/users/%7B7bbe66c8-7365-45f0-add9-7e7c829f2d58%7D"
+            },
+            "avatar": {
+                "href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:24ed60d2-b712-46cd-8be2-b1dd8e898c91/fc25e5f1-54f1-4b6b-aa67-ade4810c26e3/128"
+            },
+            "html": {
+                "href": "https://bitbucket.org/%7B7bbe66c8-7365-45f0-add9-7e7c829f2d58%7D/"
+            }
+        },
+        "type": "user",
+        "uuid": "{7bbe66c8-7365-45f0-add9-7e7c829f2d58}",
+        "account_id": "557058:24ed60d2-b712-46cd-8be2-b1dd8e898c91",
+        "nickname": "55octet"
+    }
+}

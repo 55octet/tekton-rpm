@@ -81,6 +81,11 @@ spec:
         spec:
           params:
             - name: repo-url
+              default: "https://55octet@bitbucket.org/55octet/tekon-triggers.git"
+            - name: event-key
+            - name: request-id
+            - name: committer-name
+              default: No name
           resourceTemplates:
             - apiVersion: tekton.dev/v1beta1
               kind: PipelineRun
@@ -103,14 +108,13 @@ spec:
                             storage: 1Gi
                     params:
                       - name: repo-url
-                        value: https://55octet@bitbucket.org/55octet/tekon-triggers.git
+                        value: $(tt.params.repo-url)
                       - name: event-key
                         value: $(tt.params.event-key)
                       - name: request-id
                         value: $(tt.params.request-id)
                       - name: committer-name
                         value: $(tt.params.committer-name)
-                        default: No name
 ---
 # This is mainly for publicly-trusted certificate creation
 apiVersion: cert-manager.io/v1
