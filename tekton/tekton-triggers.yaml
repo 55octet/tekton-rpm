@@ -105,11 +105,11 @@ spec:
                       - name: repo-url
                         value: https://55octet@bitbucket.org/55octet/tekon-triggers.git
                       - name: event-key
-                        value: $(header.X-Event-Key)
+                        value: $(tt.params.event-key)
                       - name: request-id
-                        value: $(header.X-Request-Id)
+                        value: $(tt.params.request-id)
                       - name: committer-name
-                        value: $(body.actor.display_name)
+                        value: $(tt.params.committer-name)
                         default: No name
 ---
 # This is mainly for publicly-trusted certificate creation
