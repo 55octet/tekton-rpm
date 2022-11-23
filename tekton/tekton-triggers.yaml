@@ -43,8 +43,6 @@ spec:
       value: $(header.X-Request-Id)
     - name: committer-name
       value: $(body.actor.display_name)
-    - name: repository
-      value: $(body.repository)
 ---
 # This listens for the actual webhook
 apiVersion: triggers.tekton.dev/v1beta1
@@ -113,8 +111,6 @@ spec:
                       - name: committer-name
                         value: $(body.actor.display_name)
                         default: No name
-                      - name: repository
-                        value: $(body.repository)
 ---
 # This is mainly for publicly-trusted certificate creation
 apiVersion: cert-manager.io/v1
