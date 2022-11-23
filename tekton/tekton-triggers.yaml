@@ -43,8 +43,6 @@ spec:
       value: $(header.X-Request-Id)
     - name: committer-name
       value: $(body.actor.display_name)
-    - name: committer-email
-      value: $(body.actor.emailAddress)
     - name: repository
       value: $(body.repository)
 ---
@@ -115,9 +113,6 @@ spec:
                       - name: committer-name
                         value: $(body.actor.display_name)
                         default: No name
-                      - name: committer-email
-                        value: $(body.actor.emailAddress)
-                        default: "NoOne@null.net"
                       - name: repository
                         value: $(body.repository)
 ---
