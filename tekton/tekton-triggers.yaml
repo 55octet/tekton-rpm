@@ -97,6 +97,15 @@ spec:
                 podTemplate:
                   securityContext:
                     fsGroup: 65532
+                params:
+                  - name: repo-url
+                    value: $(tt.params.repo-url)
+                  - name: event-key
+                    value: $(tt.params.event-key)
+                  - name: request-id
+                    value: $(tt.params.request-id)
+                  - name: committer-name
+                    value: $(tt.params.committer-name)
                 workspaces:
                   - name: shared-data
                     volumeClaimTemplate:
@@ -106,15 +115,6 @@ spec:
                         resources:
                           requests:
                             storage: 1Gi
-                    params:
-                      - name: repo-url
-                        value: $(tt.params.repo-url)
-                      - name: event-key
-                        value: $(tt.params.event-key)
-                      - name: request-id
-                        value: $(tt.params.request-id)
-                      - name: committer-name
-                        value: $(tt.params.committer-name)
 ---
 # This is mainly for publicly-trusted certificate creation
 apiVersion: cert-manager.io/v1
