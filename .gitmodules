@@ -1,0 +1,3 @@
+[submodule "tekon-triggers"]
+	path = tekon-triggers
+	url = git@bitbucket.org:55octet/tekon-triggers.git
