@@ -44,6 +44,15 @@ spec:
     - name: repo-url
       type: string
       description: The git repo URL to clone from.
+    - name: event-key
+      type: string
+      description: BitBucket Event Key
+    - name: request-id
+      type: string
+      description: BitBucket Webhook Id
+    - name: committer-name
+      type: string
+      description: Name of the person who committed this change
   workspaces:
     - name: shared-data
       description: |
