@@ -83,6 +83,7 @@ spec:
                 # https://support.atlassian.com/bitbucket-cloud/docs/event-payloads/#Repository
                 - repo:refs_changed
                 - repo:push
+                - pullrequest:created
       # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
       # https://tekton.dev/docs/triggers/triggerbindings/
       bindings:
