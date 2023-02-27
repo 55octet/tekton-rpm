@@ -88,7 +88,7 @@ spec:
           -u "${BITBUCKET_USERNAME}:${BITBUCKET_APPPASSWORD}" \
           -H "Content-Type: application/json" \
           '$(params.pullrequest-api-comments)' \
-          -d "${CONTENT}"
+          -d "${CONTENT}")
         if [[ $http_code -lt 200 ]] || [[ $http_code -ge 300 ]]; then
           printf "Command to update bitbucket failed with http_code: ${http_code}."
           exit 1
