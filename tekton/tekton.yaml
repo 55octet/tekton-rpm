@@ -72,14 +72,13 @@ spec:
           Succeeded) status="succeeded" ;;
           Completed) status="completed" ;;
         esac
-        content=$(cat <<'EOL'
+        read -r -d '' content <<'EOL'
         {
           "content": {
             "raw": "PipelineRun $(params.pipeline-run-name) has ${status}."
           }
         }
         EOL
-        )
         http_code=$(curl \
           --silent \
           --fail \
