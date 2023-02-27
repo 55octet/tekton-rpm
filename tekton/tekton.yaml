@@ -117,6 +117,8 @@ spec:
       description: BitBucket API for Pull Request Comments
       default: ""
   workspaces:
+    - name: ssh-creds
+      description: SSH Keys
     - name: shared-data
       description: |
         This workspace contains the cloned repo files, so they can be read by the
