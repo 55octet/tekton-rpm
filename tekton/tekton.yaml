@@ -6,6 +6,49 @@ metadata:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
+  name: reporting
+spec:
+  params:
+    - name: repo-url
+      type: string
+    - name: event-key
+      type: string
+    - name: request-id
+      type: string
+    - name: committer-name
+      type: string
+    - name: pullrequest-id
+      type: string
+    - name: pullrequest-author
+      type: string
+    - name: pullrequest-nickname
+      type: string
+    - name: pullrequest-url
+      type: string
+    - name: pullrequest-api-comments
+      type: string
+  workspaces:
+    - name: source
+  steps:
+    - name: report
+      image: almalinux/8-base:8.6
+      script: |
+        set -x on
+        set -v on
+        printf "repo-url: $(params.repo-url)
+        event-key: $(params.event-key)
+        request-id: $(params.request-id)
+        committer-name: $(params.committer-name)
+        pullrequest-id: $(params.pullrequest-id)
+        pullrequest-author: $(params.pullrequest-author)
+        pullrequest-nickname: $(params.pullrequest-nickname)
+        pullrequest-url: $(params.pullrequest-url)
+        pullrequest-api-comments: $(params.pullrequest-api-comments)
+        "
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
   name: rpm-build
 spec:
   # resources:
@@ -53,6 +96,26 @@ spec:
     - name: committer-name
       type: string
       description: Name of the person who committed this change
+    - name: pullrequest-id
+      type: string
+      description: Pull Request Id
+      default: ""
+    - name: pullrequest-author
+      type: string
+      description: Author of the Pull Request
+      default: ""
+    - name: pullrequest-nickname
+      type: string
+      description: Nick name of the Pull Request author
+      default: ""
+    - name: pullrequest-url
+      type: string
+      description: BitBucket Pull Request URL
+      default: ""
+    - name: pullrequest-api-comments
+      type: string
+      description: BitBucket API for Pull Request Comments
+      default: ""
   workspaces:
     - name: shared-data
       description: |
@@ -76,3 +139,26 @@ spec:
       workspaces:
         - name: source
           workspace: shared-data
+  finally:
+    - name: results
+      taskRef:
+        name: reporting
+      params:
+        - name: repo-url
+          value: $(params.repo-url)
+        - name: event-key
+          value: $(params.event-key)
+        - name: request-id
+          value: $(params.request-id)
+        - name: committer-name
+          value: $(params.committer-name)
+        - name: pullrequest-id
+          value: $(params.pullrequest-id)
+        - name: pullrequest-author
+          value: $(params.pullrequest-author)
+        - name: pullrequest-nickname
+          value: $(params.pullrequest-nickname)
+        - name: pullrequest-url
+          value: $(params.pullrequest-url)
+        - name: pullrequest-api-comments
+          value: $(params.pullrequest-api-comments)

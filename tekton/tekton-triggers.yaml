@@ -43,6 +43,16 @@ spec:
       value: $(header.X-Request-Id)
     - name: committer-name
       value: $(body.actor.display_name)
+    - name: pullrequest-id
+      value: $(body.pullrequest.id)
+    - name: pullrequest-author
+      value: $(body.pullrequest.author.display_name)
+    - name: pullrequest-nickname
+      value: $(body.pullrequest.author.nickname)
+    - name: pullrequest-url
+      value: $(body.pullrequest.links.self.href)
+    - name: pullrequest-api-comments
+      value: $(body.pullrequest.links.comments.href)
 ---
 # This listens for the actual webhook
 apiVersion: triggers.tekton.dev/v1beta1
@@ -86,6 +96,17 @@ spec:
             - name: request-id
             - name: committer-name
               default: No name
+            # Pull Request Info
+            - name: pullrequest-id
+              default: ""
+            - name: pullrequest-author
+              default: ""
+            - name: pullrequest-nickname
+              default: ""
+            - name: pullrequest-url
+              default: ""
+            - name: pullrequest-api-comments
+              default: ""
           resourceTemplates:
             - apiVersion: tekton.dev/v1beta1
               kind: PipelineRun
@@ -106,6 +127,16 @@ spec:
                     value: $(tt.params.request-id)
                   - name: committer-name
                     value: $(tt.params.committer-name)
+                  - name: pullrequest-id
+                    value: $(tt.params.pullrequest-id)
+                  - name: pullrequest-author
+                    value: $(tt.params.pullrequest-author)
+                  - name: pullrequest-nickname
+                    value: $(tt.params.pullrequest-nickname)
+                  - name: pullrequest-url
+                    value: $(tt.params.pullrequest-url)
+                  - name: pullrequest-api-comments
+                    value: $(tt.params.pullrequest-api-comments)
                 workspaces:
                   - name: shared-data
                     volumeClaimTemplate:
