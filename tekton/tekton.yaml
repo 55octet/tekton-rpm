@@ -63,7 +63,15 @@ spec:
         "
         printf "PipelineRun Name: $(params.pipeline-run-name)\n"
         printf "Pipeline Status: $(params.pipeline-status)\n"
-        curl \
+        if [[ -z $(params.pullrequest-id) ]]; then
+          printf "This run was not spawned via a Pull Request.  Not sending update to BitBucket\n."
+          exit 0
+        fi
+        http_code=$(curl \
+          --silent \
+          --fail \
+          --output /dev/stderr \
+          --write-out "%{http_code}" \
           -X POST \
           -u "${BITBUCKET_USERNAME}:${BITBUCKET_APPPASSWORD}" \
           -H "Content-Type: application/json" \
@@ -72,8 +80,11 @@ spec:
             "content": {
               "raw": "PipelineRun $(params.pipeline-run-name) has $(params.pipeline-status).  Please review."
             }
-          }'
-
+          }')
+        if [[ $http_code -lt 200 ]] || [[ $http_code -ge 300 ]]; then
+          printf "Command to update bitbucket failed with http_code: ${http_code}."
+          exit 1
+        fi
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
