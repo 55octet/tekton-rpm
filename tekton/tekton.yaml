@@ -29,6 +29,8 @@ spec:
       type: string
     - name: pipeline-status
       type: string
+    - name: pipeline-run-name
+      type: string
   workspaces:
     - name: source
   steps:
@@ -46,7 +48,10 @@ spec:
         pullrequest-url: $(params.pullrequest-url)
         pullrequest-api-comments: $(params.pullrequest-api-comments)
         "
-        printf "\nPipeline Status: $(params.pipeline-status)\n"
+        echo
+        printf "PipelineRun Name: $(params.pipeline-run-name)\n"
+        printf "Pipeline Status: $(params.pipeline-status)\n"
+        which curl || true
 
 ---
 apiVersion: tekton.dev/v1beta1
@@ -156,6 +161,8 @@ spec:
       params:
         - name: pipeline-status
           value: $(tasks.status)
+        - name: pipeline-run-name
+          value: $(context.pipelineRun.name)
         - name: repo-url
           value: $(params.repo-url)
         - name: event-key
