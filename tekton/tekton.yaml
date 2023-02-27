@@ -27,14 +27,15 @@ spec:
       type: string
     - name: pullrequest-api-comments
       type: string
+    - name: pipeline-status
+      type: string
   workspaces:
     - name: source
   steps:
     - name: report
       image: almalinux/8-base:8.6
       script: |
-        set -x on
-        set -v on
+        set -euxo pipefail
         printf "repo-url: $(params.repo-url)
         event-key: $(params.event-key)
         request-id: $(params.request-id)
@@ -45,6 +46,8 @@ spec:
         pullrequest-url: $(params.pullrequest-url)
         pullrequest-api-comments: $(params.pullrequest-api-comments)
         "
+        printf "\nPipeline Status: $(params.pipeline-status)\n"
+
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
@@ -151,6 +154,8 @@ spec:
       taskRef:
         name: reporting
       params:
+        - name: pipeline-status
+          value: $(tasks.status)
         - name: repo-url
           value: $(params.repo-url)
         - name: event-key
