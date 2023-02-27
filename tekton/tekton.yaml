@@ -67,11 +67,13 @@ spec:
           -X POST \
           -u "${BITBUCKET_USERNAME}:${BITBUCKET_APPPASSWORD}" \
           -H "Content-Type: application/json" \
+          '$(params.pullrequest-api-comments)'
           -d '{
             "content": {
               "raw": "PipelineRun $(params.pipeline-run-name) has $(params.pipeline-status).  Please review."
             }
           }'
+
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
