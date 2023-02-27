@@ -93,8 +93,7 @@ spec:
               # This should allow only pushes to main or master and push request updates to trigger the pipeline
               value: >
                 (has(body.pullrequest) && has(body.pullrequest.id)) ||
-                (has(body.push) && has(body.changes) &&
-                body.changes.exists(x, x.old.type == "branch" && x.old.name in ['main','master'])
+                (has(body.push) && has(body.changes) && body.changes.exists(x, x.old.type == "branch" && x.old.name in ['main','master']))
 
       # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
       # https://tekton.dev/docs/triggers/triggerbindings/
