@@ -84,6 +84,7 @@ spec:
                 - repo:refs_changed
                 - repo:push
                 - pullrequest:created
+                - pullrequest:updated
       # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
       # https://tekton.dev/docs/triggers/triggerbindings/
       bindings:

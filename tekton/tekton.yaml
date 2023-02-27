@@ -31,11 +31,24 @@ spec:
       type: string
     - name: pipeline-run-name
       type: string
+    - name: bitbucket-creds-secret-name
+      type: string
   workspaces:
     - name: source
   steps:
     - name: report
       image: almalinux/8-base:8.6
+      env:
+        - name: BITBUCKET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: $(params.bitbucket-creds-secret-name)
+              key: bitbucket-username
+        - name: BITBUCKET_APPPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: $(params.bitbucket-creds-secret-name)
+              key: bitbucket-apppassword
       script: |
         set -euxo pipefail
         printf "repo-url: $(params.repo-url)
@@ -48,11 +61,17 @@ spec:
         pullrequest-url: $(params.pullrequest-url)
         pullrequest-api-comments: $(params.pullrequest-api-comments)
         "
-        echo
         printf "PipelineRun Name: $(params.pipeline-run-name)\n"
         printf "Pipeline Status: $(params.pipeline-status)\n"
-        which curl || true
-
+        curl \
+          -X POST \
+          -u "${BITBUCKET_USERNAME}:${BITBUCKET_APPPASSWORD}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "content": {
+              "raw": "PipelineRun $(params.pipeline-run-name) has $(params.pipeline-status).  Please review."
+            }
+          }'
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
@@ -159,6 +178,8 @@ spec:
       taskRef:
         name: reporting
       params:
+        - name: bitbucket-creds-secret-name
+          value: bitbucket-creds
         - name: pipeline-status
           value: $(tasks.status)
         - name: pipeline-run-name
