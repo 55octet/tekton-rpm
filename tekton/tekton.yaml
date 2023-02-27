@@ -126,6 +126,8 @@ spec:
       taskRef:
         name: git-clone
       workspaces:
+        - name: ssh-directory
+          workspace: ssh-creds
         - name: output
           workspace: shared-data
       params:
@@ -141,6 +143,9 @@ spec:
           workspace: shared-data
   finally:
     - name: results
+      workspaces:
+        - name: source
+          workspace: shared-data
       taskRef:
         name: reporting
       params:

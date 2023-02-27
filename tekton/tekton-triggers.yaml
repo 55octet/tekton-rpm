@@ -92,7 +92,7 @@ spec:
         spec:
           params:
             - name: repo-url
-              default: "https://55octet@bitbucket.org/55octet/tekon-triggers.git"
+              default: "git@bitbucket.org:55octet/tekon-triggers.git"
             - name: event-key
             - name: request-id
             - name: committer-name
@@ -139,6 +139,9 @@ spec:
                   - name: pullrequest-api-comments
                     value: $(tt.params.pullrequest-api-comments)
                 workspaces:
+                  - name: ssh-creds
+                    secret:
+                      secretName: tekton-ssh-credentials
                   - name: shared-data
                     volumeClaimTemplate:
                       spec:

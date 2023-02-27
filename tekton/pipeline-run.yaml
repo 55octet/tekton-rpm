@@ -9,6 +9,9 @@ spec:
     securityContext:
       fsGroup: 65532
   workspaces:
+    - name: ssh-creds
+      secret:
+        secretName: tekton-ssh-credentials
     - name: shared-data
       volumeClaimTemplate:
         spec:
