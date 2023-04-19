@@ -13,11 +13,12 @@ spec:
       type: string
   steps:
     - name: display-body
-      image: almalinux/8-base:8.6
+      image: centos:7
       script: |
         set -euxo pipefail
         body='$(params.body)'
-        dnf install -y jq
+        yum install -y epel-release
+        yum install -y jq
         echo "${body}" | jq
 ---
 apiVersion: tekton.dev/v1beta1
