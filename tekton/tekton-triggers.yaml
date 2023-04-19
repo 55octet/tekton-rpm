@@ -41,6 +41,8 @@ spec:
       value: $(header.X-Event-Key)
     - name: request-id
       value: $(header.X-Request-Id)
+    - name: body
+      value: $(body)
     - name: committer-name
       value: $(body.actor.display_name)
     - name: pullrequest-id
@@ -85,15 +87,15 @@ spec:
                 - repo:push
                 - pullrequest:created
                 - pullrequest:updated
-        - name: "Pull on main or Pull request"
-          ref:
-            name: cel
-          params:
-            - name: filter
-              # This should allow only pushes to main or master and push request updates to trigger the pipeline
-              value: >
-                (has(body.pullrequest) && has(body.pullrequest.id)) ||
-                (has(body.push) && has(body.push.changes) && body.push.changes.exists(x, x.old.type == "branch" && x.old.name in ['main','master']))
+        # - name: "Pull on main or Pull request"
+        #   ref:
+        #     name: cel
+        #   params:
+        #     - name: filter
+        #       # This should allow only pushes to main or master and push request updates to trigger the pipeline
+        #       value: >
+        #         (has(body.pullrequest) && has(body.pullrequest.id)) ||
+        #         (has(body.push) && has(body.push.changes) && body.push.changes.exists(x, x.old.type == "branch" && x.old.name in ['main','master']))
 
       # binding are the mechanism you use to pass the webhook parameters into the TaskRun/PipelineRun objects
       # https://tekton.dev/docs/triggers/triggerbindings/
@@ -102,6 +104,8 @@ spec:
       template:
         spec:
           params:
+            - name: body
+              default: ""
             - name: repo-url
               default: "git@bitbucket.org:55octet/tekon-triggers.git"
             - name: event-key
@@ -131,6 +135,8 @@ spec:
                   securityContext:
                     fsGroup: 65532
                 params:
+                  - name: body
+                    value: $(tt.params.body)
                   - name: repo-url
                     value: $(tt.params.repo-url)
                   - name: event-key

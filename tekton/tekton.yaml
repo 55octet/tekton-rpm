@@ -6,6 +6,31 @@ metadata:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
+  name: display-body
+spec:
+  params:
+    - name: body
+      type: string
+  workspaces:
+    - name: source
+      images: almalinux/8-base:8.6
+      env:
+        - name: BITBUCKET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: $(params.bitbucket-creds-secret-name)
+              key: bitbucket-username
+        - name: BITBUCKET_APPPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: $(params.bitbucket-creds-secret-name)
+              key: bitbucket-apppassword
+      script: |
+        echo $(body)
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
   name: reporting
 spec:
   params:
@@ -67,7 +92,7 @@ spec:
           printf "This run was not spawned via a Pull Request.  Not sending update to BitBucket\n."
           exit 0
         fi
-        case $(params.pipeline-status) in
+        if
           Failed) status="FAILED!!!!!  Please review" ;;
           Succeeded) status="succeeded" ;;
           Completed) status="completed" ;;
@@ -134,6 +159,8 @@ spec:
   description: |
     This pipeline clones a git repo, then creates an rpm
   params:
+    - name: body
+      type: string
     - name: repo-url
       type: string
       description: The git repo URL to clone from.
@@ -174,6 +201,17 @@ spec:
         This workspace contains the cloned repo files, so they can be read by the
         next task.
   tasks:
+    - name: get-body
+      taskRef:
+        name: display-body
+      workspaces:
+        - name: ssh-directory
+          workspace: ssh-creds
+        - name: output
+          workspace: shared-data
+      params:
+        - name: body
+          value: $(params.body)
     - name: fetch-source
       taskRef:
         name: git-clone
