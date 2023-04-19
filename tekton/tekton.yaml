@@ -15,9 +15,10 @@ spec:
     - name: display-body
       image: almalinux/8-base:8.6
       script: |
+        body='$(params.body)'
         dnf install -y jq
-        echo "$(params.body)"
-        echo "$(params.body)" | jq
+        echo "${body}"
+        echo "${body}" | jq
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
