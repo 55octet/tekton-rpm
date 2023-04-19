@@ -87,8 +87,9 @@ spec:
                 - repo:push
                 - pullrequest:created
                 - pullrequest:updated
-        - ref:
-            name:
+        - name: marshall-body
+          ref:
+            name: cel
           params:
             - name: overlays
               value:
