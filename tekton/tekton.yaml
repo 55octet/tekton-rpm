@@ -13,6 +13,8 @@ spec:
       type: string
   workspaces:
     - name: source
+  steps:
+    - name: display-body
       images: almalinux/8-base:8.6
       env:
         - name: BITBUCKET_USERNAME
@@ -26,7 +28,8 @@ spec:
               name: $(params.bitbucket-creds-secret-name)
               key: bitbucket-apppassword
       script: |
-        echo $(body)
+        dnf install -y jq
+        echo $(body) | jq
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
