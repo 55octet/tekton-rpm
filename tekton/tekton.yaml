@@ -14,17 +14,6 @@ spec:
   steps:
     - name: display-body
       image: almalinux/8-base:8.6
-      env:
-        - name: BITBUCKET_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: $(params.bitbucket-creds-secret-name)
-              key: bitbucket-username
-        - name: BITBUCKET_APPPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: $(params.bitbucket-creds-secret-name)
-              key: bitbucket-apppassword
       script: |
         dnf install -y jq
         echo $(body) | jq
