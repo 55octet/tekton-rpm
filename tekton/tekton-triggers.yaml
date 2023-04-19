@@ -87,10 +87,13 @@ spec:
                 - repo:push
                 - pullrequest:created
                 - pullrequest:updated
-        - cel:
-            overlays:
-              - key: extensions.webhook-payload
-                expression: body.marshalJSON()
+        - ref:
+            name:
+          params:
+            - name: overlays
+              value:
+                - key: webhook-payload
+                  expression: body.marshalJSON()
         # - name: "Pull on main or Pull request"
         #   ref:
         #     name: cel
@@ -140,7 +143,7 @@ spec:
                     fsGroup: 65532
                 params:
                   - name: body
-                    value: $(tt.params.body.extensions.webhook-payload)
+                    value: $(tt.params.extensions.webhook-payload)
                   - name: repo-url
                     value: $(tt.params.repo-url)
                   - name: event-key
