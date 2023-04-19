@@ -15,9 +15,9 @@ spec:
     - name: display-body
       image: almalinux/8-base:8.6
       script: |
+        set -euxo pipefail
         body='$(params.body)'
         dnf install -y jq
-        echo "${body}"
         echo "${body}" | jq
 ---
 apiVersion: tekton.dev/v1beta1
