@@ -16,7 +16,7 @@ spec:
       image: almalinux/8-base:8.6
       script: |
         dnf install -y jq
-        echo $(body) | jq
+        echo "$(params.body)" | jq -r
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
