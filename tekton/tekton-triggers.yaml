@@ -42,7 +42,7 @@ spec:
     - name: request-id
       value: $(header.X-Request-Id)
     - name: body
-      value: $(body)
+      value: $(extensions.webhook-payload)
     - name: committer-name
       value: $(body.actor.display_name)
     - name: pullrequest-id
@@ -144,7 +144,7 @@ spec:
                     fsGroup: 65532
                 params:
                   - name: body
-                    value: $(tt.params.extensions.webhook-payload)
+                    value: $(tt.params.body)
                   - name: repo-url
                     value: $(tt.params.repo-url)
                   - name: event-key
