@@ -205,11 +205,6 @@ spec:
     - name: get-body
       taskRef:
         name: display-body
-      workspaces:
-        - name: ssh-directory
-          workspace: ssh-creds
-        - name: output
-          workspace: shared-data
       params:
         - name: body
           value: $(params.body)
