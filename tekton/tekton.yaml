@@ -11,8 +11,6 @@ spec:
   params:
     - name: body
       type: string
-  workspaces:
-    - name: source
   steps:
     - name: display-body
       image: almalinux/8-base:8.6
