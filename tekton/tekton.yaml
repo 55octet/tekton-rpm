@@ -69,8 +69,7 @@ spec:
               key: bitbucket-apppassword
       script: |
         set -euxo pipefail
-        printf "repo-url: $(params.repo-url)
-        event-key: $(params.event-key)
+
         request-id: $(params.request-id)
         committer-name: $(params.committer-name)
         pullrequest-id: $(params.pullrequest-id)
@@ -90,13 +89,11 @@ spec:
           Succeeded) status="succeeded" ;;
           Completed) status="completed" ;;
         esac
-        read -r -d '' CONTENT <<'EOL' || true
-        {
-          "content": {
-            "raw": "PipelineRun $(params.pipeline-run-name) has ${status}."
-          }
-        }
-        EOL
+
+        CONTENT='{"text":"PipelineRun $(params.pipeline-run-name) has '
+        CONTENT+="${status}."
+        CONTENT+='"}'
+
         http_code=$(curl \
           --silent \
           --fail \
